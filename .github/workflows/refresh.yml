@@ -1,0 +1,44 @@
+name: refresh-catalog
+
+on:
+  schedule:
+    - cron: '17 3 * * 1'   # 每周一 03:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Clone upstream CLI-Anything
+        run: git clone --depth 1 https://github.com/HKUDS/CLI-Anything.git /tmp/upstream
+
+      - name: Refresh registry snapshots
+        run: |
+          cp /tmp/upstream/registry.json data/registry.snapshot.json
+          cp /tmp/upstream/public_registry.json data/public_registry.snapshot.json
+          cp /tmp/upstream/matrix_registry.json data/matrix_registry.snapshot.json
+          cp /tmp/upstream/cli-hub-meta-skill/SKILL.md skill/cli-hub-meta-skill/SKILL.md
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Rebuild playground
+        run: python site/build_site.py
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain)" ]; then
+            git add -A
+            git commit -m "chore: refresh catalog snapshot + rebuild playground"
+            git push
+          else
+            echo "no upstream change"
+          fi

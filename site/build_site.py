@@ -23,6 +23,17 @@ def load(name: str, fallback: dict) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def verified_snapshot() -> list[str]:
+    path = DATA / "verify-local.json"
+    if not path.exists():
+        return []
+    try:
+        rows = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return []
+    return sorted(r["name"] for r in rows if r.get("status") == "ok")
+
+
 def installed_snapshot() -> dict:
     for cand in (Path.home() / ".cli-hub" / "installed.json",):
         if cand.exists():
@@ -38,12 +49,14 @@ def main() -> None:
     public = load("public_registry.snapshot.json", {"clis": []})
     matrices = load("matrix_registry.snapshot.json", {"matrices": []})
     installed = installed_snapshot()
+    verified = verified_snapshot()
 
     payload = {
         "harness": harness.get("clis", []),
         "public": public.get("clis", []),
         "matrices": matrices.get("matrices", []),
         "installed": sorted(installed.keys()),
+        "verified": verified,
         "meta": {
             "harness_updated": harness.get("meta", {}).get("updated"),
             "public_updated": public.get("meta", {}).get("updated"),
@@ -148,6 +161,7 @@ footer{margin-top:40px;color:var(--muted);font-size:12.5px;border-top:1px solid 
       <div class="stat"><b id="s-cat">0</b><span>分类</span></div>
       <div class="stat"><b id="s-mx">0</b><span>能力矩阵</span></div>
       <div class="stat"><b id="s-in">0</b><span>本机已装</span></div>
+      <div class="stat"><b id="s-ver">0</b><span>实测可跑</span></div>
     </div>
   </header>
 
@@ -188,6 +202,7 @@ footer{margin-top:40px;color:var(--muted);font-size:12.5px;border-top:1px solid 
 const D = JSON.parse(document.getElementById('payload').textContent);
 const ALL = [...D.harness.map(c => ({...c, src:'harness'})), ...D.public.map(c => ({...c, src:'public'}))];
 const INST = new Set(D.installed || []);
+const VER = new Set(D.verified || []);
 const byName = new Map(ALL.map(c => [c.name, c]));
 const cats = [...new Set(ALL.map(c => c.category).filter(Boolean))].sort();
 
@@ -200,6 +215,7 @@ el('s-all').textContent = ALL.length;
 el('s-cat').textContent = cats.length;
 el('s-mx').textContent = D.matrices.length;
 el('s-in').textContent = INST.size;
+el('s-ver').textContent = VER.size;
 el('f-h').textContent = D.meta.harness_updated || '—';
 el('f-p').textContent = D.meta.public_updated || '—';
 el('f-m').textContent = D.meta.matrix_updated || '—';
@@ -231,7 +247,7 @@ function card(c){
   const inst = INST.has(c.name);
   const cmd = c.install_cmd || (c.src === 'harness' ? `cli-hub install ${c.name}` : '');
   return `<article class="card ${inst ? 'in' : ''}">
-    <h3>${esc(c.display_name || c.name)} <span class="mono">${esc(c.name)}</span>${inst ? '<span class="badge ok">已装</span>' : ''}</h3>
+    <h3>${esc(c.display_name || c.name)} <span class="mono">${esc(c.name)}</span>${inst ? '<span class="badge ok">已装</span>' : ''}${VER.has(c.name) ? '<span class="badge ok">实测可跑</span>' : ''}</h3>
     <div class="badges">
       <span class="badge src">${esc(c.src)}</span>
       ${c.category ? `<span class="badge">${esc(c.category)}</span>` : ''}

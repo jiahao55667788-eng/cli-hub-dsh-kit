@@ -16,7 +16,9 @@ cli-hub-dsh-kit/
 ├─ docs/index.html                 # 试玩台（单文件，无外链、无追踪，Pages 直接托管）
 ├─ site/build_site.py              # 试玩台生成器：registry 快照 + 本机安装台账 → docs/index.html
 ├─ data/*.snapshot.json            # 上游三份注册表快照（79 harness + 24 public + 5 matrix）
+├─ data/verify-local.json          # 本机 37 个 CLI 的 --help 实测结果
 ├─ scripts/install-cli-hub.ps1     # 一键复现安装（clone → venv → pip → shim → PATH → skill）
+├─ scripts/verify-entries.py       # 批量校验已装 CLI 入口是否真能启动
 ├─ skill/cli-hub-meta-skill/SKILL.md  # 供 DSH / Claude Code / Codex 发现的元技能
 ├─ INSTALL-NOTES.md                # 本机安装记录：路径、依赖、实测证据、坑、回滚
 └─ LICENSE-upstream                # 上游 Apache-2.0 原文
@@ -63,6 +65,40 @@ mkdir -p ~/.agents/skills && cp -r cli-hub-meta-skill ~/.agents/skills/cli-hub-m
 | `cli-hub previews ...` | 预览包与实时会话（生成物可直接开浏览器） |
 
 安装台账：`%USERPROFILE%\.cli-hub\installed.json`；矩阵状态：`matrix_state.json`（同目录）。
+
+## 本机实装结果（2026-11-24）
+
+5 条能力矩阵全部装齐，**37 个 CLI 全部通过 `--help` 启动实测**（`total=37 ok=37 bad=0`）：
+
+| 矩阵 | 规模 | 成员 |
+| --- | --- | --- |
+| video-creation | 14 | generate-veo-video · jimeng · openscreen · obs-studio · audacity · minimax-cli · elevenlabs · suno · kdenlive · shotcut · videocaptioner · gimp · krita · inkscape |
+| image-design | 7 | comfyui · gimp · krita · inkscape · sketch · drawio · mermaid |
+| knowledge-research | 13 | exa · browser · safari · clibrowser · zotero · obsidian · mubu · notebooklm · intelwatch · libreoffice · anygen · drawio · mermaid |
+| 3d-cad | 6 | blender · freecad · cloudcompare · cloudanalyzer · godot · renderdoc |
+| game-development | 9 | godot · blender · freecad · krita · inkscape · audacity · musescore · comfyui · slay_the_spire_ii |
+
+矩阵成员互有重叠，去重后加上试点安装的 `mermaid`，台账共 37 条，全部实测可启动。
+
+安装过程中遇到并逐个解决的 4 个上游/平台问题（都已装好，非放过）：
+
+| CLI | 现象 | 处理 |
+| --- | --- | --- |
+| `sketch` | registry 的 install_cmd 是 npm 命令，被 pip 策略误解析成 `pip install sketch/agent-harness` | 直接进目录 `npm install && npm link`，得 `sketch-cli` |
+| `suno` | install_cmd 用 `python3 -m pip`，Windows 无 `python3` | 用 venv pip 装 `git+https://github.com/slauger/suno-cli.git` |
+| `clibrowser` | install_cmd 是 `cargo install`，本机无 Rust | 装 rustup + stable，`cargo install --git … --tag v0.1.0 --locked` 编译成功 |
+| `jimeng` | install_cmd 是 `curl … | bash`（POSIX 脚本） | 按脚本逻辑直接取 `dreamina_cli_windows_amd64.exe` 放到 `%USERPROFILE%\bin\dreamina.exe` |
+
+注意两点：
+- `minimax-cli` 的真实 bin 名是 `minimax`（registry 的 `entry_point` 写错），已在台账里修正。
+- CLI 是控制面；Blender / Kdenlive / OBS 这类 GUI 软件本体仍需另行安装，CLI 负责用 socket / CLI / 文件驱动它们。
+
+自检命令：
+
+```bash
+python scripts/verify-entries.py      # 输出 data/verify-local.json + 汇总行
+python site/build_site.py             # 把「已装 / 实测可跑」标记刷进试玩台
+```
 
 ## 在 agent 里怎么用
 

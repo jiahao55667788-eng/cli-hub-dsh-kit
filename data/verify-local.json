@@ -1,0 +1,224 @@
+[
+  {
+    "name": "anygen",
+    "entry": "cli-anything-anygen",
+    "status": "ok",
+    "detail": "Usage: cli-anything-anygen [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "audacity",
+    "entry": "cli-anything-audacity",
+    "status": "ok",
+    "detail": "Usage: cli-anything-audacity [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "blender",
+    "entry": "cli-anything-blender",
+    "status": "ok",
+    "detail": "Usage: cli-anything-blender [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "browser",
+    "entry": "cli-anything-browser",
+    "status": "ok",
+    "detail": "Usage: cli-anything-browser [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "clibrowser",
+    "entry": "clibrowser",
+    "status": "ok",
+    "detail": "CLI browser for AI agents"
+  },
+  {
+    "name": "cloudanalyzer",
+    "entry": "cli-anything-cloudanalyzer",
+    "status": "ok",
+    "detail": "Usage: cli-anything-cloudanalyzer [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "cloudcompare",
+    "entry": "cli-anything-cloudcompare",
+    "status": "ok",
+    "detail": "Usage: cli-anything-cloudcompare [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "comfyui",
+    "entry": "cli-anything-comfyui",
+    "status": "ok",
+    "detail": "Usage: cli-anything-comfyui [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "drawio",
+    "entry": "cli-anything-drawio",
+    "status": "ok",
+    "detail": "Usage: cli-anything-drawio [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "elevenlabs",
+    "entry": "elevenlabs",
+    "status": "ok",
+    "detail": "ElevenLabs API Documentation"
+  },
+  {
+    "name": "exa",
+    "entry": "cli-anything-exa",
+    "status": "ok",
+    "detail": "Usage: cli-anything-exa [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "freecad",
+    "entry": "cli-anything-freecad",
+    "status": "ok",
+    "detail": "Usage: cli-anything-freecad [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "generate-veo-video",
+    "entry": "generate-veo",
+    "status": "ok",
+    "detail": "usage: generate-veo [-h] [--output-file OUTPUT_FILE] [--duration {4,6,8}]"
+  },
+  {
+    "name": "gimp",
+    "entry": "cli-anything-gimp",
+    "status": "ok",
+    "detail": "Usage: cli-anything-gimp [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "godot",
+    "entry": "cli-anything-godot",
+    "status": "ok",
+    "detail": "Usage: cli-anything-godot [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "inkscape",
+    "entry": "cli-anything-inkscape",
+    "status": "ok",
+    "detail": "Usage: cli-anything-inkscape [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "intelwatch",
+    "entry": "cli-anything-intelwatch",
+    "status": "ok",
+    "detail": "Usage: cli-anything-intelwatch [OPTIONS]"
+  },
+  {
+    "name": "jimeng",
+    "entry": "dreamina",
+    "status": "ok",
+    "detail": "Usage:"
+  },
+  {
+    "name": "kdenlive",
+    "entry": "cli-anything-kdenlive",
+    "status": "ok",
+    "detail": "Usage: cli-anything-kdenlive [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "krita",
+    "entry": "cli-anything-krita",
+    "status": "ok",
+    "detail": "Usage: cli-anything-krita [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "libreoffice",
+    "entry": "cli-anything-libreoffice",
+    "status": "ok",
+    "detail": "Usage: cli-anything-libreoffice [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "mermaid",
+    "entry": "cli-anything-mermaid",
+    "status": "ok",
+    "detail": "Usage: cli-anything-mermaid [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "minimax-cli",
+    "entry": "minimax",
+    "status": "ok",
+    "detail": "Usage: minimax [options] [command] [message...]"
+  },
+  {
+    "name": "mubu",
+    "entry": "cli-anything-mubu",
+    "status": "ok",
+    "detail": "Usage: cli-anything-mubu [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "musescore",
+    "entry": "cli-anything-musescore",
+    "status": "ok",
+    "detail": "Usage: cli-anything-musescore [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "notebooklm",
+    "entry": "cli-anything-notebooklm",
+    "status": "ok",
+    "detail": "Usage: cli-anything-notebooklm [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "obs-studio",
+    "entry": "cli-anything-obs-studio",
+    "status": "ok",
+    "detail": "Usage: cli-anything-obs-studio [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "obsidian",
+    "entry": "cli-anything-obsidian",
+    "status": "ok",
+    "detail": "Usage: cli-anything-obsidian [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "openscreen",
+    "entry": "cli-anything-openscreen",
+    "status": "ok",
+    "detail": "Usage: cli-anything-openscreen [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "renderdoc",
+    "entry": "cli-anything-renderdoc",
+    "status": "ok",
+    "detail": "Usage: cli-anything-renderdoc [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "safari",
+    "entry": "cli-anything-safari",
+    "status": "ok",
+    "detail": "Usage: cli-anything-safari [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "shotcut",
+    "entry": "cli-anything-shotcut",
+    "status": "ok",
+    "detail": "Usage: cli-anything-shotcut [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "sketch",
+    "entry": "sketch-cli",
+    "status": "ok",
+    "detail": "Usage: sketch-cli [options] [command]"
+  },
+  {
+    "name": "slay_the_spire_ii",
+    "entry": "cli-anything-sts2",
+    "status": "ok",
+    "detail": "Usage: cli-anything-sts2 [OPTIONS] [COMMAND] [ARGS]..."
+  },
+  {
+    "name": "suno",
+    "entry": "suno",
+    "status": "ok",
+    "detail": "Usage: suno [OPTIONS] COMMAND [ARGS]..."
+  },
+  {
+    "name": "videocaptioner",
+    "entry": "cli-anything-videocaptioner",
+    "status": "ok",
+    "detail": "Traceback (most recent call last):"
+  },
+  {
+    "name": "zotero",
+    "entry": "cli-anything-zotero",
+    "status": "ok",
+    "detail": "Usage: C:\\cli-anything\\.venv\\Scripts\\cli-anything-zotero [OPTIONS] [COMMAND]"
+  }
+]

@@ -38,6 +38,16 @@ DSH 侧：技能目录写入后，会话 `available_skills` 立即出现 `cli-hu
 
 矩阵规模（dry-run 计划）：video-creation 14 · image-design 7 · knowledge-research 13 · 3d-cad 6 · game-development 9。
 
+## 最终实装（2026-11-24 完成）
+
+- 5 条矩阵全部装齐，台账 37 条，`--help` 实测 **37/37 通过**（`scripts/verify-entries.py`）。
+- 额外补的工具链：`uv 0.13.9`（public 类）、`rustup + stable 1.100.0 / cargo`（clibrowser）、
+  npm 全局 `sketch-cli`、`dreamina.exe`（jimeng，30.1 MB）落在 `%USERPROFILE%\bin`。
+- 上游 registry 的 4 处安装问题已逐个手工绕过：`sketch`（npm 命令被 pip 策略误解析）、
+  `suno`（install_cmd 依赖 `python3`）、`clibrowser`（需 cargo）、`jimeng`（POSIX shell 安装脚本）。
+  详细对照表见 README「本机实装结果」。
+- `minimax-cli` 实际 bin 名为 `minimax`，台账 `entry_point` 已修正。
+
 ## 已知坑
 
 1. **`pip install -e` 遇 GBK**：上游 `setup.py` 用默认编码读文件，非 UTF-8 locale 报
